@@ -6,7 +6,7 @@ function DefaultLayout () {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center mt-12 ">
+      <div className="flex flex-col items-center mt-14 ">
         <Routes />
       </div>
     </div>

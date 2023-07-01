@@ -1,22 +1,38 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
+import React, { useContext } from 'react'
+import CartContext from '../../context'
+import { CCard, CCardBody, CCardImage, CCardText, CButton } from '@coreui/react'
 
-const img = 'https://images.pexels.com/photos/5081400/pexels-photo-5081400.jpeg'
-
-function Card () {
+function Card ({ product }) {
+  const context = useContext(CartContext)
   return (
-    <div className='bg-white cursor-pointer w-56 h-60 rounded-lg'>
-      <figure className='relative mb-3 w-full h-4/5'>
-        <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-sm'>Electronics</span>
-        <img src={img} alt='headphones' />
-        <div className='absolute top-0 right-0 flex justify-center  items-center bg-white  w-6 h-6 rounded-full'>
-          +
+    <CCard style={{ width: '14rem' }}>
+      <CCardImage
+        orientation="top"
+        src={product.images[0]}
+        style={{ cursor: 'pointer' }}
+        onClick={() => {
+          context.setVisible(true)
+          context.setSelectedItem(product)
+        } }
+        />
+      <CCardBody>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <CCardText style={{ marginBottom: '0.5rem' }}>{product.title}</CCardText>
+          <CCardText style={{ marginBottom: '0.5rem' }}>${product.price}</CCardText>
+          <CButton
+          color="secondary"
+          variant="outline"
+          size="sm"
+          style={{ marginBottom: '0.5rem' }}
+          onClick={() => context.setCounter(context.counter + 1)}
+          >
+            Add to Cart
+          </CButton>
+          <div>{product.category.name}</div>
         </div>
-      </figure>
-      <p className='flex justify-between'>
-        <span className='text-sm font-medium'>Headphones</span>
-        <span className='text-lg font-bold'>$300</span>
-      </p>
-    </div>
+      </CCardBody>
+    </CCard>
   )
 }
 

@@ -1,12 +1,11 @@
 import React from 'react'
-import Card from '../../components/Card'
-import Card2 from '../../components/Card/Card'
-
+import ProductList from '../../containers/ProductList'
+import Detalles from '../../components/DetallesItems'
 function Home () {
   return (
     <div>
-      <Card />
-      <Card2 />
+      <ProductList />
+      <Detalles />
     </div>
   )
 }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import CartContext from '../../context'
 import { Link } from 'react-router-dom'
 import {
   CNavbar,
@@ -15,6 +16,7 @@ import './index.css'
 function NavBar () {
   const [visible, setVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState('')
+  const context = useContext(CartContext)
 
   const handleItemClick = (itemName) => {
     setSelectedItem(itemName)
@@ -112,7 +114,7 @@ function NavBar () {
                 Sign In
               </CNavItem>
               <CNavItem>
-                <CNavLink>🛒 0</CNavLink>
+                <CNavLink>🛒{context.counter}</CNavLink>
               </CNavItem>
             </CNavbarNav>
           </CCollapse>
