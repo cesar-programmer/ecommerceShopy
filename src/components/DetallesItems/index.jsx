@@ -19,7 +19,7 @@ function Detalles () {
         <CCloseButton className="text-gray-500" onClick={() => setVisible(false)} />
       </COffcanvasHeader>
       <COffcanvasBody className=" items-center justify-center p-4">
-        <CImage rounded src={item.images[0]} width={200} height={200} className="mb-5 mx-auto" />
+        <CImage rounded src={item.images[0]} style={{ height: '230px', width: '230px' }} className="mb-5 mx-auto" />
         <div className="text-center">
           <p className="text-gray-800 font-medium mb-2">${item.price}</p>
           <p className="text-gray-600">{item.description}</p>

@@ -114,7 +114,10 @@ function NavBar () {
                 Sign In
               </CNavItem>
               <CNavItem>
-                <CNavLink>🛒{context.counter}</CNavLink>
+                <CNavLink
+                onClick={ () => context.setCarVisible(true) }
+                style={{ cursor: 'pointer' }}
+                >🛒{context.counter}</CNavLink>
               </CNavItem>
             </CNavbarNav>
           </CCollapse>
