@@ -1,0 +1,13 @@
+.modal-header-custom  {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-header-custom:hover {
+  background-color: #c0c0c0;
+}

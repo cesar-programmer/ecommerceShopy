@@ -10,10 +10,17 @@ export const CartProvider = ({ children }) => {
   const [selectedItem, setSelectedItem] = useState({})
   const [cart, setCart] = useState([])
 
+  const deleteItems = (id) => {
+    const newCart = cart.filter((item) => item.id !== id)
+    setCart(newCart)
+    setCounter(newCart.length)
+  }
+
   console.log(cart)
 
   return (
     <CartContext.Provider value={{
+      deleteItems,
       carVsible,
       setCarVisible,
       cart,

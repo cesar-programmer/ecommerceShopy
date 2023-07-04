@@ -115,7 +115,7 @@ function NavBar () {
               </CNavItem>
               <CNavItem>
                 <CNavLink
-                onClick={ () => context.setCarVisible(true) }
+                onClick={ () => context.setCarVisible(!context.carVsible) }
                 style={{ cursor: 'pointer' }}
                 >🛒{context.counter}</CNavLink>
               </CNavItem>
