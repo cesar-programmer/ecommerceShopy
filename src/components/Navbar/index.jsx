@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import CartContext from '../../context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   CNavbar,
   CContainer,
@@ -18,8 +18,19 @@ function NavBar () {
   const [selectedItem, setSelectedItem] = useState('')
   const context = useContext(CartContext)
 
-  const handleItemClick = (itemName) => {
+  // utilizo el hook useNavigate para navegar entre las paginas de la aplicacion
+  const Navigate = useNavigate()
+
+  // utilizo el hook useEffect para que cada vez que se actualice el carrito se actualice el total
+  useEffect(() => {
+    context.totalCart()
+  }, [context.cart])
+
+  // esta funcion cambia el estado de la categoria seleccionada y navega a la pagina correspondiente
+  const handleItemClick = (itemName, path) => {
     setSelectedItem(itemName)
+    // si el path no esta definido, navega a la pagina de la categoria seleccionada en el navbar
+    Navigate(path)
   }
 
   return (
@@ -40,11 +51,11 @@ function NavBar () {
               </CNavItem>
               <CNavItem
                 component={Link}
-                to="/Clothes"
-                className={selectedItem === 'Clothes' ? 'active' : ''}
-                onClick={() => handleItemClick('Clothes')}
+                to="men's clothing"
+                className={selectedItem === "men's clothing" ? 'active' : ''}
+                onClick={() => handleItemClick("men's clothing")}
               >
-                Clothes
+                men clothing
               </CNavItem>
               <CNavItem
                 component={Link}
@@ -56,19 +67,19 @@ function NavBar () {
               </CNavItem>
               <CNavItem
                 component={Link}
-                to="/Fornitures"
-                className={selectedItem === 'Fornitures' ? 'active' : ''}
-                onClick={() => handleItemClick('Fornitures')}
+                to="/jewelery"
+                className={selectedItem === 'jewelery' ? 'active' : ''}
+                onClick={() => handleItemClick('jewelery')}
               >
-                Fornitures
+                jewelery
               </CNavItem>
               <CNavItem
                 component={Link}
-                to="/Toys"
-                className={selectedItem === 'Toys' ? 'active' : ''}
-                onClick={() => handleItemClick('Toys')}
+                to="/women's clothing"
+                className={selectedItem === "women's clothing" ? 'active' : ''}
+                onClick={() => handleItemClick("women's clothing")}
               >
-                Toys
+                women clothing
               </CNavItem>
               <CNavItem
                 component={Link}

@@ -5,11 +5,12 @@ import { CCard, CCardBody, CCardImage, CCardText, CButton } from '@coreui/react'
 
 function Card ({ product }) {
   const context = useContext(CartContext)
+
   return (
     <CCard style={{ width: '16rem', height: '24rem' }}>
       <CCardImage
         orientation="top"
-        src={product.images[0]}
+        src={product.image}
         style={{ cursor: 'pointer', height: '220px', width: '260px' }}
         onClick={() => {
           context.setVisible(true)
@@ -27,8 +28,10 @@ function Card ({ product }) {
           size="sm"
           style={{ marginBottom: '0.5rem' }}
           onClick={() => {
+            // aqui se agrega el producto al carrito de compras con el spread operator
+            // y se pone el cunter del carrito en + 1
+            context.addToCart(product)
             context.setCounter(context.counter + 1)
-            context.setCart([...context.cart, product])
           }}
           >
             Add to Cart

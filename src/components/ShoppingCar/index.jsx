@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { CButton, CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter, CCard, CCardImage, CCardBody, CCardText, CRow, CCardTitle, CCol } from '@coreui/react'
 import CartContext from '../../context'
 import './index.css'
@@ -32,13 +33,16 @@ function ShoppingCar () {
             {cartItems.map((item) => (
               <CCol xs key={item.id}>
                 <CCard className="h-100">
-                  <CCardImage orientation="top" src={item.images[0]} className="h-28 object-cover" />
+                  <CCardImage orientation="top" src={item.image} className="h-28 object-cover" />
                   <CCardBody>
                     <CCardTitle className="font-semibold text-sm">{item.title}</CCardTitle>
-                    <CCardText>${item.price}</CCardText>
-                    <CButton color="danger" variant="ghost" onClick={() => handleDeleteItem(item.id)}>
+                    <CCardText>${item.price}  |  Quantity:{item.quantity}</CCardText>
+                    <CButton color="danger" variant="ghost" onClick={() => {
+                      handleDeleteItem(item.id)
+                    }}>
                       Delete
                     </CButton>
+                    ${item.ItemTotal}
                   </CCardBody>
                 </CCard>
               </CCol>
@@ -46,10 +50,25 @@ function ShoppingCar () {
           </CRow>
         </CModalBody>
         <CModalFooter>
+        <CCardText style={{ marginRight: 'auto' }}>Total: ${context.total}</CCardText>
           <CButton color="secondary" onClick={() => setVisible(false)}>
             Continue Shopping
           </CButton>
-          <CButton color="primary">Checkout</CButton>
+          <Link
+          className="text-decoration-none"
+          to={cartItems.length > 0 ? '/my-orders/last' : ''}
+          >
+          <CButton
+            disabled={cartItems.length === 0}
+            color="primary"
+            onClick={() => {
+              setVisible(false)
+              context.handleCheckout()
+            }}
+            >
+            Checkout
+          </CButton>
+          </Link>
         </CModalFooter>
       </CModal>
     </>
