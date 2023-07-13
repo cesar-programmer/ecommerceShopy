@@ -32,7 +32,12 @@ function NavBar () {
     <>
       <CNavbar expand="lg" colorScheme="light" className="bg-light">
         <CContainer fluid>
-          <CNavbarBrand href="/">Shopi</CNavbarBrand>
+          <CNavbarBrand
+            component={Link}
+            to="/Home"
+            >
+            Shopi
+          </CNavbarBrand>
           <CNavbarToggler onClick={() => setVisible(!visible)} />
           <CCollapse className="navbar-collapse" visible={visible}>
             <CNavbarNav>
