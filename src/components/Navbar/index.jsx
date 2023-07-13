@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import CartContext from '../../context'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   CNavbar,
   CContainer,
@@ -18,19 +18,14 @@ function NavBar () {
   const [selectedItem, setSelectedItem] = useState('')
   const context = useContext(CartContext)
 
-  // utilizo el hook useNavigate para navegar entre las paginas de la aplicacion
-  const Navigate = useNavigate()
-
   // utilizo el hook useEffect para que cada vez que se actualice el carrito se actualice el total
   useEffect(() => {
     context.totalCart()
   }, [context.cart])
 
   // esta funcion cambia el estado de la categoria seleccionada y navega a la pagina correspondiente
-  const handleItemClick = (itemName, path) => {
+  const handleItemClick = (itemName) => {
     setSelectedItem(itemName)
-    // si el path no esta definido, navega a la pagina de la categoria seleccionada en el navbar
-    Navigate(path)
   }
 
   return (
