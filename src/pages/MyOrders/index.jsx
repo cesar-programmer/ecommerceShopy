@@ -18,7 +18,7 @@ function MyOrders () {
         <Link
           key={item.id} to={`/my-orders/${item.id}`}
           style={{ textDecoration: 'none', color: '#333' }}
- >
+          >
         <OrdersCard
           totalPrice={item.totalPrice}
           items={item.items}

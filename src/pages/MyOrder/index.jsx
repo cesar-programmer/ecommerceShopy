@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import CartContext from '../../context'
 import { CContainer, CCard, CCardBody, CCardImage, CCardText, CCardTitle } from '@coreui/react'
 
-function Order () {
+function MyOrder () {
   const context = useContext(CartContext)
   const orders = context.order?.slice(-1)[0]?.items || []
 
@@ -40,4 +40,4 @@ function Order () {
   )
 }
 
-export default Order
+export default MyOrder

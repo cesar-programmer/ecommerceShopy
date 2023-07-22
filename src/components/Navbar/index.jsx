@@ -17,11 +17,14 @@ function NavBar () {
   const [visible, setVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState('')
   const context = useContext(CartContext)
-
   // utilizo el hook useEffect para que cada vez que se actualice el carrito se actualice el total
   useEffect(() => {
     context.totalCart()
   }, [context.cart])
+
+  useEffect(() => {
+    context.userActtive()
+  }, [context.users])
 
   // esta funcion cambia el estado de la categoria seleccionada y navega a la pagina correspondiente
   const handleItemClick = (itemName) => {
@@ -93,12 +96,9 @@ function NavBar () {
 
             <CNavbarNav className="ms-auto">
               <CNavItem
-                component={Link}
-                to="/user"
-                className={selectedItem === 'user' ? 'active' : ''}
-                onClick={() => handleItemClick('user')}
+                to="/contact"
               >
-                ccesa@gmail.com
+              {context.UserActive?.nameUser}
               </CNavItem>
               <CNavItem
                 component={Link}
@@ -119,10 +119,11 @@ function NavBar () {
               <CNavItem
                 component={Link}
                 to="/sing-in"
-                className={selectedItem === 'sing-in' ? 'active' : ''}
-                onClick={() => handleItemClick('sing-in')}
+                onClick={() => {
+                  context.handleSignout()
+                }}
               >
-                Sign In
+              {context.UserActive?.nameUser ? 'Sing Out' : 'Sing In'}
               </CNavItem>
               <CNavItem>
                 <CNavLink

@@ -14,6 +14,42 @@ export const CartProvider = ({ children }) => {
   const [total, setTotal] = useState(0)
   const [order, setOrder] = useState([])
   const [search, setSearch] = useState('')
+  const [users, setUsers] = useState([])
+  const [UserActive, setUserActive] = useState({})
+
+  const userActtive = () => {
+    const actual = users.find((user) => user.loginUser === true)
+    setUserActive(actual)
+  }
+
+  const handleSignin = (email, password) => {
+    // esta funcion cambia el estado de loginUser a true para que se inicie la sesion del usuario
+    const newUsers = users.map((user) => {
+      if (user.email === email && user.password === password) {
+        return { ...user, loginUser: true }
+      } else {
+        return user
+      }
+    })
+    setUsers(newUsers)
+  }
+
+  const handleSignout = () => {
+    // esta funcion cambia el estado de loginUser a false para que se cierre la sesion del usuario
+    const newUsers = users.map((user) => {
+      if (user.loginUser === true) {
+        return { ...user, loginUser: false }
+      } else {
+        return user
+      }
+    })
+    setUsers(newUsers)
+  }
+
+  const CreateAccount = (nameUser, email, password) => {
+    const newUser = { nameUser, email, password, loginUser: true }
+    setUsers([...users, newUser])
+  }
 
   // esta funcion busca los productos en el carrito por el nombre del producto
   const handleSearch = (e) => {
@@ -75,12 +111,23 @@ export const CartProvider = ({ children }) => {
         ItemTotal: item.price
       }])
   }
+  console.log(UserActive, 'UserActive')
+  console.log(users, 'users')
+  console.log(cart, 'cart')
+  console.log(order, 'order')
   return (
     <CartContext.Provider value={{
+      UserActive,
+      userActtive,
+      handleSignout,
+      handleSignin,
+      CreateAccount,
       handleSearch,
       handleCheckout,
       addToCart,
       deleteItems,
+      users,
+      setUsers,
       search,
       setSearch,
       order,
