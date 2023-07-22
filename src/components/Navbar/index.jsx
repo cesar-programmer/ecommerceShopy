@@ -121,6 +121,7 @@ function NavBar () {
                 to="/sing-in"
                 onClick={() => {
                   context.handleSignout()
+                  context.setOrder([])
                 }}
               >
               {context.UserActive?.nameUser ? 'Sing Out' : 'Sing In'}
@@ -129,7 +130,11 @@ function NavBar () {
                 <CNavLink
                 onClick={ () => context.setCarVisible(!context.carVsible) }
                 style={{ cursor: 'pointer' }}
-                >🛒{context.counter}</CNavLink>
+                >
+                {
+                  context.UserActive?.nameUser ? `🛒 (${context.cart.length})` : ''
+                }
+                </CNavLink>
               </CNavItem>
             </CNavbarNav>
           </CCollapse>

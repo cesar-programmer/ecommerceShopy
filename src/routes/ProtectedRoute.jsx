@@ -1,6 +1,6 @@
-// routes/ProtectedRoute.js
+/* eslint-disable react/prop-types */
 import React, { useContext } from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import CartContext from '../context'
 
 const ProtectedRoute = ({ children }) => {
