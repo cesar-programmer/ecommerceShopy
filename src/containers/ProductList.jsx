@@ -28,6 +28,8 @@ function ProductList () {
     // Sólo mostrar los primeros 20 productos
     setFilteredItems(filteredProducts.slice(0, 20))
   }, [context.search, category, products])
+  // Si el término de búsqueda, la categoría o los productos cambian, volver a filtrar los productos
+  // aqui se renderizan los productos en la pagina principal y se filtran por categoria y por el termino de busqueda
 
   return (
     <CContainer>
